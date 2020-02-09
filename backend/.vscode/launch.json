@@ -17,16 +17,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "debugger",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "start:frontapi:debug"
-      ],
-      "port": 5858,
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "name": "Debug Nest Framework",
+      "args": ["${workspaceFolder}/src/apps/front-api/main.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
     }
   ]
 }
