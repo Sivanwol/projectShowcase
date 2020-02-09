@@ -27,7 +27,7 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   output: {
-    path: path.join(__dirname,'../', 'dist'),
-    filename: 'frontapi-server.js',
+    path: path.join(__dirname,'../','../', 'dist','apps','front-api'),
+    filename: 'server.js',
   },
 };
