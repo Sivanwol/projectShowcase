@@ -1,5 +1,5 @@
 import { AppModule } from './app.module';
-import { APIServer } from 'common/server/ApiServer';
+import { APIServer } from '../../../common/server/ApiServer';
 async function bootstrap() {
   const serverName = process.env.SERVER_NAME || false;
   if (!serverName) {

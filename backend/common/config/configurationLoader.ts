@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
-import ConfigException from 'common/exceptions/ConfigException';
+import ConfigException from '../exceptions/ConfigException';
 export class ConfigurationLoader {
   private yamlToLoad: Array<{ key: string; filepath: string }> = [];
   private configObjects = {};

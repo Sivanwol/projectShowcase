@@ -9,8 +9,8 @@ import * as rateLimit from 'express-rate-limit';
 import { FlubErrorHandler } from 'nestjs-flub';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
-import AppMisconfigurationException from 'common/exceptions/AppMisconfigurationException';
-import ServerFailedStartException from 'common/exceptions/ServerFailedStartException';
+import AppMisconfigurationException from '../exceptions/AppMisconfigurationException';
+import ServerFailedStartException from '../exceptions/ServerFailedStartException';
 import { Transport } from '@nestjs/common/enums/transport.enum';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
