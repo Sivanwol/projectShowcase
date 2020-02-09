@@ -1,75 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+
+# Beckend Run by
+
+<p  align="center">
+
+<a  href="http://nestjs.com/"  target="blank"><img  src="https://nestjs.com/img/logo_text.svg"  width="320"  alt="Nest Logo"  /></a>
+
 </p>
+
+  
 
 [travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
+
 [travis-url]: https://travis-ci.org/nestjs/nest
+
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
+
 [linux-url]: https://travis-ci.org/nestjs/nest
+
   
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Work Flow
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+this system if multi layer mrico service that start from front-api.
+the follow micro services and thire role play
+| Service Name | Goal  |
+|--|--|
+| front-api | this the main entry point where all api calls from this point will have basic filters and it will use logic bus what ever he need get data no call will flow from here to entities service as well will not handle any type of big handle of logic  |
+| entities | this will only entry to query to the db and/or update/insert/delete the data flow this will not hold api entry but will use protocol of GRPC internally within the services |
+| config | this main entry will user and hold all relevant config as cache based and well well serv any within the request from the the services will user rebbit mq for data verification and will not hold any api protocol  |
+| logic-bus | logic bus service have 3 aspect that he handle a. work event bus system so he can handle complex logic. b. only from here it will dispatch a task if too big or too complex handle from here. c. it use monitor the tasks and notify from streams service what ever the data received |
+| task-que | this is QUE WORK system (task system) that will handle many tasks that not possible do that within range of the request such stats , notifiy and more|
+| streams | stearms means working with websockets and / or GraphQL mainly dont have active api in term of routes|
+| devops-mcu | this where admin system will be as well any devops operation will be in it has support for console that the framework access if needed as well the admin api have routes here |
+  
+
+  
 
 ## Installation
 
+  
+
 ```bash
+
 $ npm install
+
 ```
+
+  
 
 ## Running the app
 
+  
+
 ```bash
+
 # development
+
 $ npm run start
 
+  
+
 # watch mode
+
 $ npm run start:dev
 
+  
+
 # production mode
+
 $ npm run start:prod
+
 ```
+
+  
 
 ## Test
 
+  
+
 ```bash
+
 # unit tests
+
 $ npm run test
 
+  
+
 # e2e tests
+
 $ npm run test:e2e
 
+  
+
 # test coverage
+
 $ npm run test:cov
+
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
-  Nest is [MIT licensed](LICENSE).
+  
+
+Nest is [MIT licensed](LICENSE).
