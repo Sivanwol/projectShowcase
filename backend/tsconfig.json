@@ -10,7 +10,15 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "paths": {}
+    "paths": {
+      "@frontapi/*": ["./apps/front-api/src/*"],
+      "@config/*": ["./apps/config-server/src/*"],
+      "@entities/*": ["./apps/entities-server/src/*"],
+      "@devops/*": ["./apps/devops-mcu/src/*"],
+      "@tasks/*": ["./apps/task-que-handler/src/*"],
+      "@logicBus/*": ["./apps/logic-bus/src/*"],
+      "@common/*": ["./common/*"],
+    },
   },
   "exclude": [
     "node_modules",
