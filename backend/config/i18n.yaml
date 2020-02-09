@@ -1,0 +1,3 @@
+path: /i18n
+patten: "*.i18n.json"
+fallbackLanguage: en
