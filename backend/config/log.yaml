@@ -1,0 +1,11 @@
+logLevel: debug
+supportConsole: true
+supportFiles: true
+general:
+  maxSize: 30mb
+  maxFiles: 15d
+  zip: false
+  colorize: true
+  fullFileName: C:\Users\Sivan\Documents\Projects\ShowcaseInterviewMonitoring\backend\logs\$SERVERNAME$-%DATE%.log
+  datePatten: YYYY-MM-DD_HH
+  datePattenConsole: YYYY-MM-DD HH-MM

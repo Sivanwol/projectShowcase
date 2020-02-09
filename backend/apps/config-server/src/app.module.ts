@@ -4,11 +4,14 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import configuration from 'common/config/configuration';
 
+import { CommonModule } from 'common/modules/commonModule';
+
 @Module({
   imports: [
+    CommonModule,
     ConfigModule.forRoot({
       load: [configuration],
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

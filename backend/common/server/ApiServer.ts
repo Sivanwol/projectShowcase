@@ -6,11 +6,14 @@ import * as compression from 'compression';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
+import { FlubErrorHandler } from 'nestjs-flub';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
 import AppMisconfigurationException from 'common/exceptions/AppMisconfigurationException';
 import ServerFailedStartException from 'common/exceptions/ServerFailedStartException';
 import { Transport } from '@nestjs/common/enums/transport.enum';
+import * as Sentry from('@sentry/node');
+
 const Servers = {};
 declare const module: any;
 export class APIServer {
@@ -20,7 +23,6 @@ export class APIServer {
   private microServiceOps;
   private configService = null;
   private AppModule;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(
     serverName,
     AppModule,
@@ -28,7 +30,7 @@ export class APIServer {
     mode: Transport = Transport.TCP,
     options = {},
   ) {
-    this.ServerName = serverName;
+    this.serverName = serverName;
     this.AppModule = AppModule;
     console.log(`Start init Server ${this.ServerName}`);
     if (hybridMode) {
@@ -37,16 +39,6 @@ export class APIServer {
   }
   get ServerName() {
     return this.serverName;
-  }
-  set ServerName(value) {
-    this.serverName = value;
-  }
-
-  private setMicroServiceMode(mode: Transport = Transport.TCP, options = {}) {
-    this.hybridMode = true;
-    this.microServiceMode = mode;
-    this.microServiceOps = options;
-    console.log(`Set Server ${this.ServerName} to hybrit mode`);
   }
   async shotDownServer() {
     if (Servers[this.ServerName].app) {
@@ -111,6 +103,13 @@ export class APIServer {
     console.log(`restart Server ${this.ServerName}`);
     this.shotDownServer();
     this.startServer();
+  }
+
+  private setMicroServiceMode(mode: Transport = Transport.TCP, options = {}) {
+    this.hybridMode = true;
+    this.microServiceMode = mode;
+    this.microServiceOps = options;
+    console.log(`Set Server ${this.ServerName} to hybrit mode`);
   }
 
   private async loadHybridMode() {
