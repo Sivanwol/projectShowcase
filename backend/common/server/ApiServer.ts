@@ -12,7 +12,7 @@ import { ConfigService } from '@nestjs/config';
 import AppMisconfigurationException from 'common/exceptions/AppMisconfigurationException';
 import ServerFailedStartException from 'common/exceptions/ServerFailedStartException';
 import { Transport } from '@nestjs/common/enums/transport.enum';
-import * as Sentry from('@sentry/node');
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 const Servers = {};
 declare const module: any;
@@ -140,6 +140,7 @@ export class APIServer {
     }
     if (Servers[this.ServerName].env.isDevelopMode) {
       Servers[this.ServerName].app.useGlobalFilters(new FlubErrorHandler());
+      this.applyDocumentSwaggerToApiServer();
     }
     Servers[this.ServerName].app.use(helmet());
     Servers[this.ServerName].app.enableCors();
@@ -169,6 +170,24 @@ export class APIServer {
       module.hot.accept();
       module.hot.dispose(() => Servers[this.ServerName].app.close());
     }
+  }
+  private applyDocumentSwaggerToApiServer() {
+    const options = new DocumentBuilder()
+      .setTitle(`${this.ServerName} Api Document`)
+      .setDescription(`Api Serivce of ${this.ServerName}`)
+      .setVersion('1.0')
+      .addTag(this.ServerName)
+      .addTag('api')
+      .build();
+    const document = SwaggerModule.createDocument(
+      Servers[this.ServerName].app,
+      options,
+    );
+    SwaggerModule.setup(
+      this.configService.get('app.apiDocumentPath'),
+      Servers[this.ServerName].app,
+      document,
+    );
   }
   private isEnvirementOnProductionMode() {
     const modes: Array<string> =

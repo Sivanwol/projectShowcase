@@ -1,5 +1,5 @@
 {
-    "HELLO_MESSAGE": "Hello {username}",
+    "HELLO_MESSAGE": "Hello {sometext}",
     "GOODBYE_MESSAGE": "Goodbye {username}",
     "USER_ADDED_PRODUCT": "{0.username} added {1.productName} to cart",
     "SETUP": {

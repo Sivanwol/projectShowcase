@@ -1,0 +1,14 @@
+
+# will have migration support tool or this be used via extenal tool
+migrationSupport: true
+# only use this when you want rebuild the db all over in each launch as well sync mode will be enable may split this option later on if needed
+debugSuport: true 
+entityPrefix: entity
+cache: false
+entitiesDb:
+  host: localhost
+  port: 3306
+  type: mysql
+  database: entities
+  username: 'root'
+  password: 'root'

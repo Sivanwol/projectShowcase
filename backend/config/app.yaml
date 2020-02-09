@@ -1,6 +1,7 @@
 isDevelopMode: true
 isDevelopAllowHttps: false
-modesAutoTriggerProduction: [
+apiDocumentPath: C:\Users\Sivan\Documents\Projects\ShowcaseInterviewMonitoring\backend\docs
+modesAapiDocumentPathutoTriggerProduction: [
   'production',
   'staging',
   'automationQA'
