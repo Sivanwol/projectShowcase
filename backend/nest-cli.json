@@ -1,0 +1,66 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/front-api/src",
+  "monorepo": true,
+  "root": "apps/front-api",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/front-api/tsconfig.app.json"
+  },
+  "projects": {
+    "front-api": {
+      "type": "application",
+      "root": "apps/front-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/front-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/front-api/tsconfig.app.json"
+      }
+    },
+    "devops-mcu": {
+      "type": "application",
+      "root": "apps/devops-mcu",
+      "entryFile": "main",
+      "sourceRoot": "apps/devops-mcu/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/devops-mcu/tsconfig.app.json"
+      }
+    },
+    "config-server": {
+      "type": "application",
+      "root": "apps/config-server",
+      "entryFile": "main",
+      "sourceRoot": "apps/config-server/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/config-server/tsconfig.app.json"
+      }
+    },
+    "entities-server": {
+      "type": "application",
+      "root": "apps/entities-server",
+      "entryFile": "main",
+      "sourceRoot": "apps/entities-server/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/entities-server/tsconfig.app.json"
+      }
+    },
+    "logic-bus": {
+      "type": "application",
+      "root": "apps/logic-bus",
+      "entryFile": "main",
+      "sourceRoot": "apps/logic-bus/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/logic-bus/tsconfig.app.json"
+      }
+    },
+    "tasks-que-handler": {
+      "type": "application",
+      "root": "apps/tasks-que-handler",
+      "entryFile": "main",
+      "sourceRoot": "apps/tasks-que-handler/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tasks-que-handler/tsconfig.app.json"
+      }
+    }
+  }
+}

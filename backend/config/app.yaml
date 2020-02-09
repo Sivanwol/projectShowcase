@@ -1,0 +1,21 @@
+isDevelopMode: true
+isDevelopAllowHttps: false
+modesAutoTriggerProduction: [
+  'production',
+  'staging',
+  'automationQA'
+]
+logLevel: [
+  'log', 
+  'error', 
+  'warn', 
+  'debug'
+]
+http:
+  enable: true
+  port: 3000
+https: 
+  enable: false
+  key: ''
+  crt: ''
+  port: 443

@@ -1,0 +1,2 @@
+microServiceConnection: 'redis://localhost:6379'
+seesionConnection: 'redis://localhost:6379'
