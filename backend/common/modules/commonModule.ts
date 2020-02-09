@@ -4,7 +4,9 @@ import {LoggerModule} from './loggerModule';
 import * as path from 'path';
 import { I18nModule, QueryResolver, HeaderResolver } from 'nestjs-i18n';
 @Module({
-  imports: [ConfigModule, LoggerModule,
+  imports: [ 
+    ConfigModule,
+    LoggerModule,
     I18nModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         path: path.join(__dirname, configService.get('i18n.path')),
@@ -15,10 +17,11 @@ import { I18nModule, QueryResolver, HeaderResolver } from 'nestjs-i18n';
         { use: QueryResolver, options: ['lang', 'locale', 'l'] },
         HeaderResolver,
       ],
-      inject: [ConfigService],
+      imports: [ConfigModule],
+      inject: [ConfigService]
     })
   ],
   providers: [],
-  exports: [],
+  exports: [I18nModule],
 })
 export class CommonModule {}
