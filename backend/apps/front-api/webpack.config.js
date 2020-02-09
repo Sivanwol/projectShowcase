@@ -25,11 +25,11 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    plugins: [
+      new TsconfigPathsPlugin({ configFile: `${appPath}/tsconfig.app.json` }),
+    ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new TsconfigPathsPlugin({ configFile: `${appPath}/tsconfig.app.json` }),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   output: {
     path: path.join(__dirname, '../', '../', 'dist', 'apps', 'front-api'),
     filename: 'server.js',

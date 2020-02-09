@@ -20,7 +20,7 @@ export class ConfigurationLoader {
   }
 
   private loadConfigurations() {
-    const currentPath = path.dirname(require.main.filename);
+    const currentPath = path.basename(__dirname);
     const configPath = path.join(
       currentPath,
       `..${path.sep}`,
