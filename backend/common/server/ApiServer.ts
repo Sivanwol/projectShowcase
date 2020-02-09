@@ -139,7 +139,7 @@ export class APIServer {
       );
     }
     if (Servers[this.ServerName].env.isDevelopMode) {
-      app.useGlobalFilters(new FlubErrorHandler());
+      Servers[this.ServerName].app.useGlobalFilters(new FlubErrorHandler());
     }
     Servers[this.ServerName].app.use(helmet());
     Servers[this.ServerName].app.enableCors();
