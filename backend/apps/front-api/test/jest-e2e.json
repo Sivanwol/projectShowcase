@@ -1,9 +1,22 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@frontapi/(.*)$": "./apps/front-api/src/$1",
+    "^@config/(.*)$": "./apps/config-server/src/$1",
+    "^@entities/(.*)$": "./apps/entities-server/src/$1",
+    "^@devops/(.*)$": "./apps/devops-mcu/src/$1",
+    "^@tasks/(.*)$": "./apps/task-que-handler/src/$1",
+    "^@logicBus/(.*)$": "./apps/logic-bus/src/$1",
+    "^@common/(.*)$": "./apps/common/$1"
   }
 }

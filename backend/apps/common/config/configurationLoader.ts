@@ -24,6 +24,7 @@ export class ConfigurationLoader {
     const configPath = path.join(
       currentPath,
       `..${path.sep}`,
+      `..${path.sep}`,
       `..${path.sep}config`,
     );
     fs.readdir(configPath, (err, files) => {

@@ -17,8 +17,8 @@
       "@devops/*": ["./apps/devops-mcu/src/*"],
       "@tasks/*": ["./apps/task-que-handler/src/*"],
       "@logicBus/*": ["./apps/logic-bus/src/*"],
-      "@common/*": ["./common/*"],
-    },
+      "@common/*": ["./apps/common/*"]
+    }
   },
   "exclude": [
     "node_modules",
