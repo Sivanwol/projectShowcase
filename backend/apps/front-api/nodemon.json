@@ -1,0 +1,9 @@
+{
+ "watch": ["apps/front-api/src"],
+ "ext": "ts",
+ "ignore": ["apps/front-api/src/**/*.spec.ts"],
+ "exec": "node --inspect=127.0.0.1:5858 -r tsconfig-paths/register -r ts-node/register -- apps/front-api/src/main.ts",
+ "env": {
+   "SERVER_NAME": "frontapi"
+ }
+}

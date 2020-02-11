@@ -1,12 +1,14 @@
-import { Module } from '@nestjs/common';
+import { Module ,forwardRef } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerService } from 'nest-logger';
+import { CommonModule } from './commonModule';
+import {ConfigurationService} from '../services/configuration.service';
 @Module({
-  imports: [ConfigModule],
+  imports: [forwardRef(() =>CommonModule)],
   providers: [
     {
       provide: LoggerService,
-      useFactory: (config: ConfigService) => {
+      useFactory: (config: ConfigurationService) => {
         // getLoggers() is a helper function to get configured console and/or rotate logger transports.
         // It takes takes two parameters:
         // 1: Appenders where to log to: console or rotate or both in array
@@ -17,25 +19,25 @@ import { LoggerService } from 'nest-logger';
         //    consoleOptions?: see Winston's ConsoleTransportOptions interface
         //    fileOptions?: see Winston Daily Rotate File's DailyRotateFile.DailyRotateFileTransportOptions
         const serverName = process.env.SERVER_NAME;
-        const filePath = config.get('log.general.fullFileName');
+        const filePath = config.getConfigValue('log.general.fullFileName');
         const loggers = [];
-        if (config.get('log.supportConsole')) {
+        if (config.getConfigValue('log.supportConsole')) {
           loggers.push(
             LoggerService.console({
-              timeFormat: config.get('log.general.datePattenConsole'),
+              timeFormat: config.getConfigValue('log.general.datePattenConsole'),
             }),
           );
         }
-        if (config.get('log.supportFiles')) {
+        if (config.getConfigValue('log.supportFiles')) {
           loggers.push(
             LoggerService.rotate({
-              colorize: config.get('log.general.colorize'),
+              colorize: !!config.getConfigValue('log.general.colorize'),
               fileOptions: {
                 filename: filePath.replace('$SERVERNAME$', serverName),
-                datePattern: config.get('log.general.datePatten'),
-                zippedArchive: config.get('log.general.zip'),
-                maxSize: config.get('log.general.maxSize'),
-                maxFiles: config.get('log.general.maxFiles'),
+                datePattern: config.getConfigValue('log.general.datePatten'),
+                zippedArchive: !!config.getConfigValue('log.general.zip'),
+                maxSize: config.getConfigValue('log.general.maxSize'),
+                maxFiles: config.getConfigValue('log.general.maxFiles'),
               },
             }),
           );
@@ -43,9 +45,9 @@ import { LoggerService } from 'nest-logger';
         // LoggerService constructor will take two parameters:
         // 1. Log level: debug, info, warn or error
         // 2. List of logger transport objects.
-        return new LoggerService(config.get('log.logLevel'), loggers);
+        return new LoggerService(config.getConfigValue('log.logLevel'), loggers);
       },
-      inject: [ConfigService],
+      inject: [ConfigurationService],
     },
   ],
   exports: [LoggerService],
